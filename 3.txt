@@ -1,0 +1,427 @@
+<!-- Problem Stmt1 : Perform the following  -->
+
+<?php
+    // 1. Create an indexed array with a list of friend names
+    $friends = ["Amruta", "Namrata", "Neha", "Sneha", "Apurva"];
+    
+    // 2. Traverse the created indexed array using a foreach loop
+    echo "Traversing the array using foreach loop:<br>";
+    foreach ($friends as $friend) {
+        echo $friend . "<br>";
+    }
+    echo "<br>";
+    
+    // 3. Retrieve a particular element of an array
+    echo "Retrieving the second element (index 1) of the array:<br>";
+    echo $friends[1]; // Outputs: Bob
+    echo "<br><br>";
+    
+    // 4. Retrieve a range of elements from an array using array_slice()
+    echo "Retrieving a range of elements from the array using array_slice():<br>";
+    $slice = array_slice($friends, 1, 3); // Retrieves elements from index 1 to 3
+    print_r($slice); // Outputs: Array ( [0] => Namrata [1] => Neha [2] => Sneha )
+    echo "<br><br>";
+    
+    // 5. Insert an additional element into the array
+    echo "Inserting an additional element 'Frank' into the array:<br>";
+    array_push($friends, "Shruti"); // or $friends[] = "Frank";
+    print_r($friends);
+    echo "<br><br>";
+    
+    // 6. Display the entire array element using print_r() and var_dump()
+    echo "Displaying the entire array element using print_r():<br>";
+    print_r($friends);
+    echo "<br><br>";
+    
+    echo "Displaying the entire array element using var_dump():<br>";
+    var_dump($friends);
+    echo "<br><br>";
+    
+    // 7. Count the array elements using count() and sizeof()
+    echo "Counting the array elements using count() and sizeof():<br>";
+    echo "Count: " . count($friends) . "<br>"; // Using count()
+    echo "Sizeof: " . sizeof($friends) . "<br>"; // Using sizeof()
+    echo "<br>";
+    
+    // 8. Find the occurrence of each value in an array using array_count_values()
+    echo "Finding the occurrence of each value in the array using array_count_values():<br>";
+    $friendCounts = array_count_values($friends);
+    print_r($friendCounts);
+    echo "<br><br>";
+    
+    // 9. Sort the array elements using sort(), asort(), and rsort()
+    echo "Sorting the array elements using sort():<br>";
+    sort($friends);
+    print_r($friends);
+    echo "<br><br>";
+    
+    // Resetting array to original order for demonstration
+    $friends = ["Amruta", "Namrata", "Neha", "Sneha", "Apurva", "Shruti"];
+    
+    echo "Sorting the array elements using asort() (maintains key association):<br>";
+    asort($friends);
+    print_r($friends);
+    echo "<br><br>";
+    
+    // Resetting array to original order for demonstration
+    $friends = ["Amruta", "Namrata", "Neha", "Sneha", "Apurva", "Shruti"];
+    
+    echo "Sorting the array elements using rsort() (reverse sort):<br>";
+    rsort($friends);
+    print_r($friends);
+    echo "<br><br>";
+    
+    // Resetting array to original order for demonstration
+    $friends = ["Amruta", "Namrata", "Neha", "Sneha", "Apurva", "Shruti"];
+
+    // 10. Move the pointer through the array using current(), next(), prev(), end(), and reset()
+    echo "Moving the pointer through the array:<br>";
+    echo "Current: " . current($friends) . "<br>"; 
+    echo "Next: " . next($friends) . "<br>"; 
+    echo "Previous: " . prev($friends) . "<br>"; 
+    echo "End: " . end($friends) . "<br>"; 
+    echo "Reset: " . reset($friends) . "<br>"; 
+    
+?>
+
+
+<!-- Problem Stmt1 : Perform the following  -->
+<?php
+// 1. Create the array with specified elements
+$numbers = [23, 4, 5, 4, 5, 23, 5, 67, 23];
+
+// 2. Remove duplicate elements using array_unique()
+$uniqueNumbers = array_unique($numbers);
+
+// 3. Display the array with duplicates removed
+echo "<h2>Array with duplicates removed using array_unique():<br></h2>";
+print_r($uniqueNumbers);
+?>
+
+
+
+<!-- Problem Stmt2 : Perform the following -->
+<?php
+    // 1. Create the Associative array with list of month numbers and month names up to the 11th month
+    $months = [
+        1 => "January",
+        2 => "February",
+        3 => "March",
+        4 => "April",
+        5 => "May",
+        6 => "June",
+        7 => "July",
+        8 => "August",
+        9 => "September",
+        10 => "October",
+        11 => "November"
+    ];
+    
+    // 2. Insert the 12th month in the above array
+    $months[12] = "December";
+    
+    // 3. Retrieve a particular element of an array based on key
+    echo "The 5th month is: " . $months[5]; // Outputs: May
+    echo "<br><br>";
+    
+    // 4. Display the entire array element using print_r() and var_dump()
+    echo "Using print_r():<br>";
+    print_r($months);
+    echo "<br><br>";
+    
+    echo "Using var_dump():<br>";
+    var_dump($months);
+    echo "<br><br>";
+    
+    // 5. Looping through an associative array using each() and list()
+    // The each() function is deprecated as of PHP 7.2.0, but for demonstration:
+    // echo "Looping through the array using each() and list():<br>";
+    // reset($months); // Reset the array pointer
+    // while (list($key, $value) = each($months)) {
+    //     echo "Key: $key; Value: $value<br>";
+    // }
+    // echo "<br>";
+
+    // 5. Loop through an associative array using foreach
+    echo "Looping through the array using foreach():<br>";
+    foreach ($months as $key => $value) {
+    echo "Key: $key; Value: $value<br>";
+    }
+    echo "<br>";
+    
+    // 6. Swap the keys and values in the array using array_flip()
+    $flippedMonths = array_flip($months);
+    echo "Swapped keys and values using array_flip():<br>";
+    print_r($flippedMonths);
+    echo "<br><br>";
+    
+    // 7. Check the existence of any value and key using in_array() and array_key_exists()
+    // Check if the value "May" exists in the array
+    if (in_array("May", $months)) {
+        echo "Value 'May' exists in the array.<br>";
+    } else {
+        echo "Value 'May' does not exist in the array.<br>";
+    }
+    
+    // Check if the key 6 exists in the array
+    if (array_key_exists(6, $months)) {
+        echo "Key 6 exists in the array.<br>";
+    } else {
+        echo "Key 6 does not exist in the array.<br>";
+    }
+    echo "<br>";
+    
+    // 8. Retrieve the key based on the value of any element using array_search()
+    $key = array_search("August", $months);
+    echo "The key for the value 'August' is: $key";
+    echo "<br><br>";
+        
+?>
+
+
+
+<!-- Problem Stmt3: Perform the following -->
+<?php
+    // 1. Create the multidimensional array (Nested arrays)
+    $students = [
+        [
+            "Roll" => 1,
+            "Name" => "ABC",
+            "Class" => "FY",
+            "Marks" => 97
+        ],
+        [
+            "Roll" => 2,
+            "Name" => "PQR",
+            "Class" => "SY",
+            "Marks" => 89
+        ],
+        [
+            "Roll" => 3,
+            "Name" => "XYZ",
+            "Class" => "TY",
+            "Marks" => 85
+        ]
+    ];
+    
+    // 2. Access a particular array element
+    echo "Accessing the name of the first student: " . $students[0]["Name"]; 
+    echo "<br><br>";
+    
+    // 3. Access all the array elements using a nested for loop
+    echo "Accessing all the array elements using a nested for loop:<br>";
+    for ($i = 0; $i < count($students); $i++) {
+        foreach ($students[$i] as $key => $value) {
+            echo "$key: $value<br>";
+        }
+        echo "<br>";
+    }
+    
+    // 4. Displaying array elements using print_r() and var_dump()
+    echo "Displaying the array using print_r():<br>";
+    print_r($students);
+    echo "<br><br>";
+    
+    echo "Displaying the array using var_dump():<br>";
+    var_dump($students);
+    echo "<br><br>";
+    
+?>
+
+
+<!-- Problem Stmt4: Queue functionality of Array (First in-first out manner) -->
+<?php
+    echo"<h2>Queue Functionality</h2>";
+    // 1. Create an array with 10 numbers
+    $queue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    
+    // Display the original array
+    echo "Original array:<br>";
+    print_r($queue);
+    echo "<br><br>";
+    
+    // 2. Remove the first element from the array using array_shift()
+    $removedElement = array_shift($queue);
+    echo "Removed element: $removedElement<br>";
+    echo "Array after removing the first element:<br>";
+    print_r($queue);
+    echo "<br><br>";
+    
+    // 3. Add an element at the beginning of the array using array_unshift()
+    array_unshift($queue, 0);
+    echo "Array after adding element at the beginning:<br>";
+    print_r($queue);
+    echo "<br><br>";
+    
+?>
+
+
+<!-- Problem Stmt5: Stack functionality of Array (Last in First out Manner) -->
+
+<?php
+    echo"<h2>Stack Functionality</h2>";
+    // 1. Create an array with 10 numbers
+    $stack = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    
+    // Display the original array
+    echo "Original array:<br>";
+    print_r($stack);
+    echo "<br><br>";
+    
+    // 2. Add an element to the end of the array using array_push()
+    array_push($stack, 11);
+    echo "Array after adding an element at the end using array_push():<br>";
+    print_r($stack);
+    echo "<br><br>";
+    
+    // 3. Remove the last element from the array using array_pop()
+    $removedElement = array_pop($stack);
+    echo "Removed element: $removedElement<br>";
+    echo "Array after removing the last element using array_pop():<br>";
+    print_r($stack);
+    echo "<br><br>";
+    
+?>
+
+
+<!-- Problem Stmt 6: min() and max() function in array -->
+
+<?php
+    echo"<h2>min() and max() function</h2>";
+    // 1. Initialize arrays with marks for 3 subjects for 10 students
+    $physics = [56, 78, 90, 67, 89, 45, 76, 88, 92, 81];
+    $chemistry = [66, 88, 70, 77, 99, 55, 86, 98, 72, 91];
+    $maths = [76, 68, 80, 87, 79, 65, 96, 78, 82, 71];
+    
+    // 2. Merge all arrays to find the maximum and minimum marks
+    $allMarks = array_merge($physics, $chemistry, $maths);
+    
+    // 3. Find the maximum marks among all subjects
+    $maxMarks = max($allMarks);
+    echo "The maximum marks among all subjects are: $maxMarks<br>";
+    
+    // 4. Find the minimum marks among all subjects
+    $minMarks = min($allMarks);
+    echo "The minimum marks among all subjects are: $minMarks<br>";
+    
+?>
+
+
+<!-- Problem Stmt7: check whether entered number is palindrome or not using user defined function. -->
+
+<html>
+    <head>
+        <title>Palindrome</title>
+    </head>
+    <body>
+        <h2>Check Palindrome</h2>
+        <form action="" method="POST">
+            <h3>Enter a number :</h3>
+            <input type="number" name="n1" required><br><br>
+            <input type="submit" name="submit" value="Check Palindrome">
+        </form>
+
+        <?php
+        function isPalindrome($number) {
+            // Convert the number to a string
+            $str = strval($number);
+        
+            // Reverse the string
+            $reversedStr = strrev($str);
+        
+            // Check if the original string is the same as the reversed string
+            return $str === $reversedStr;
+        }
+
+        if (isset($_POST["submit"])) {
+            $number = $_POST['n1'];
+            if (isPalindrome($number)) {
+                echo "$number is a palindrome.<br>";
+            } else {
+                echo "$number is not a palindrome.<br>";
+            }
+        }
+        ?>
+    </body>
+</html>
+
+
+<!-- Problem Stmt8: Write the PHP code for user defined function 
+o	Take one email_id  as input from user.
+o	Call user defined check_email function with parameter to check whether the entered email is valid or not.
+o	Inside function body use call standard library function preg_match() to check whether entered string is in format of email.
+o	Print final decision Valid/Invalid 
+ -->
+
+ <html>
+    <head>
+        <title>Email</title>
+    </head>
+    <body>
+        <h2>Validate Email</h2>
+        <form action="" method="POST">
+            <h3>Enter your email:</h3>
+            <input type="text" name="e1" required><br><br>
+            <input type="submit" name="submit" value="Validate Email">
+        </form>
+
+        <?php
+            // Define the function to check if an email is valid
+            function check_email($email) {
+            // Regular expression for validating an email address
+            $pattern = '/^[\w\.-]+@[\w\.-]+\.\w+$/';
+    
+            // Use preg_match to validate the email address
+            return preg_match($pattern, $email);
+            }
+
+        if (isset($_POST["submit"])) {
+            $email = $_POST['e1'];
+            if (check_email($email)) {
+                echo "$email is a valid email address.<br>";
+            } else {
+                echo "$email is not a valid email address.<br>";
+            }
+        }
+        ?>
+    </body>
+</html>
+
+
+<!-- Problem Stmt9: Find the Factorial program in PHP using recursive function -->
+
+<html>
+    <head>
+        <title>Calculate Factorial</title>
+    </head>
+    <body>
+        <h2>Calculate Factorial</h2>
+        <form action="" method="POST">
+            <h3>Enter a number :</h3>
+            <input type="number" name="n1" required><br><br>
+            <input type="submit" name="submit" value="Calculate Factorial">
+        </form>
+
+        <?php
+            // Define a recursive function to calculate factorial
+            function factorial($n) {
+            // Base case: factorial of 0 is 1
+            if ($n <= 1) {
+                return 1;
+            }
+            // Recursive case: n * factorial of (n-1)
+            return $n * factorial($n - 1);
+            }
+
+            if (isset($_POST["submit"])) {
+                $number = $_POST['n1'];
+                if ($number >= 0) {
+                    $result = factorial($number);
+                    echo "The factorial of $number is: $result<br>";
+                } else {
+                    echo "Please enter a non-negative integer.<br>";
+                }
+            }
+        ?>
+    </body>
+</html>
