@@ -1,0 +1,76 @@
+registration
+
+registration.blade.php
+<!-- resources/views/registration.blade.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form action="{{ url('/submit-registration') }}" method="POST">
+        @csrf
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
+
+profile.blade.php
+<!-- resources/views/profile.blade.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h2>Profile Details</h2>
+    <p><strong>Name:</strong> {{ $data['name'] }}</p>
+    <p><strong>Email:</strong> {{ $data['email'] }}</p>
+    <p><strong>Password:</strong> {{ $data['password'] }}</p>
+</body>
+</html>
+
+
+PostController.php
+class PostController extends Controller
+{
+    // Display the registration view
+    public function registration()
+    {
+        return view('registration');
+    }
+
+    // Handle the registration form submission
+    public function submitRegistration(Request $request)
+    {
+        // Retrieve all input data
+        $data = $request->all();
+
+        // Pass the data to the profile view
+        return view('profile', compact('data'));
+    }
+}
+
+web.php
+use App\Http\Controllers\PostController;
+Route::get('/registration', [PostController::class, 'registration']);
+Route::post('/submit-registration', [PostController::class, 'submitRegistration']);
+
