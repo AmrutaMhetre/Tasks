@@ -1,0 +1,189 @@
+<!-- Problem Stmt1 : Class, Object and constructor  -->
+
+<?php
+    class Holiday1 {
+        public $name;
+        public $day;
+        public $month;
+    
+        public function __construct($n, $d, $m) {
+            $this->name = $n;
+            $this->day = $d;
+            $this->month = $m;
+        }
+    
+        // Method to compare if two holidays are in the same month
+        public function inSameMonth($otherHoliday) {
+            return $this->month === $otherHoliday->month;
+        }
+    }
+    
+    // Example usage
+    $h1 = new Holiday1("New Year", 1, "January");
+    $h2 = new Holiday1("Independence Day", 4, "July");
+    $h3 = new Holiday1("Republic Day", 26, "January");
+    
+    echo "New year and Independence Day are inSameMonth? ".($h1->inSameMonth($h2) ? ' True' : ' False'); // False
+    echo"<br>";
+    echo "New year and Republic Day are inSameMonth? ".($h1->inSameMonth($h3) ? ' True' : ' False'); // True
+    
+?>
+
+
+<!-- Problem Stmt2 : Inheritance
+Base class Parent with static variable bank_balance=1000 and two methods i.e Deposit() and Withdraw(). 
+Method implementation is two argument, no return type where the money value is either deposited or withdraw from bank_balance. 
+Create  child classes i.e Son inherits the Parent class.
+Create the 2 object and call methods Deposit() and Withdraw() 
+Check final bank balance at end. ( as per ur Deposit() and Withdraw)
+ -->
+
+<?php
+    class ParentClass {
+        protected static $bank_balance = 1000;
+    
+        public function deposit($amount) {
+            if ($amount > 0) {
+                self::$bank_balance += $amount;      //self keyword is used to access static members of the class
+                echo "Deposited: $amount<br>";
+            } else {
+                echo "Invalid deposit amount<br>";
+            }
+        }
+    
+        public function withdraw($amount) {
+            if ($amount > 0 && $amount <= self::$bank_balance) {
+                self::$bank_balance -= $amount;
+                echo "Withdraw: $amount<br>";
+            } elseif ($amount > self::$bank_balance) {
+                echo "Insufficient funds to withdraw $amount<br>";
+            } else {
+                echo "Invalid withdrawal amount<br>";
+            }
+        }
+    
+        public function getBalance() {
+            return self::$bank_balance;
+        }
+    }
+    
+    class ChildClass extends ParentClass {
+        // Son class can use the methods of ParentClass
+    }
+    
+    // Creating objects of the ChildClass
+    $c1 = new ChildClass();
+    $c2 = new ChildClass();
+    
+    // Using the objects to deposit and withdraw money
+    $c1->deposit(500);
+    $c2->withdraw(300);
+    $c1->withdraw(100);
+    $c2->deposit(200);
+    
+    // Checking the final bank balance
+    echo "Final bank balance: " . $c1->getBalance() . "<br>";
+    
+?>
+
+
+<!-- Problem Stmt3 : Abstract Class
+Create an abstract class named Fruit, with a constructor function that gets the name of the fruit and an abstract function, color, that prints the color of the fruit. Create 3 child classes extending the abstract class namely: Apple, Orange, Grape. In these child classes, define the color function so that it prints Apple is red for the Apple class, Orange is orange for the Orange class and Grape is purple for the Grape class.
+ -->
+
+<?php
+    abstract class Fruit {
+        protected $name;
+    
+        // Constructor to set the name of the fruit
+        public function __construct($name) {
+            $this->name = $name;
+        }
+    
+        // Abstract method to define in child classes
+        abstract public function color();
+    }
+    
+    class Apple extends Fruit {
+        // Implement the color method
+        public function color() {
+            echo "{$this->name} is red.<br>";
+        }
+    }
+    
+    class Orange extends Fruit {
+        // Implement the color method
+        public function color() {
+            echo "{$this->name} is orange.<br>";
+        }
+    }
+    
+    class Grape extends Fruit {
+        // Implement the color method
+        public function color() {
+            echo "{$this->name} is purple.<br>";
+        }
+    }
+    
+    // Create objects of the child classes
+    $a1 = new Apple("Apple");
+    $o1 = new Orange("Orange");
+    $g1 = new Grape("Grape");
+    
+    // Call the color method for each object
+    $a1->color();   // Output: Apple is red.
+    $o1->color();  // Output: Orange is orange.
+    $g1->color();   // Output: Grape is purple.
+?>
+
+
+<!-- Problem Stmt4 : Interface
+Write a PHP class called 'Shape' with an abstract method 'calculateArea()'. Create two subclasses, 'Triangle' and 'Rectangle', that implement the 'calculateArea()' method.
+ -->
+
+<?php
+    abstract class Shape{
+        // Abstract method to calculate area, must be implemented by subclasses
+        abstract public function calculateArea();
+    }
+
+    class Triangle extends Shape{
+        private $base;
+        private $height1;
+
+        // Constructor to initialize base and height
+        public function __construct($base, $height1) {
+            $this->base = $base;
+            $this->height1 = $height1;
+        }
+
+        // Implement the calculateArea method for Triangle
+        public function calculateArea() {
+            return 0.5 * $this->base * $this->height1;
+        }
+    }
+
+    class Rectangle extends Shape{
+        private $width;
+        private $height2;
+        
+        // Constructor to initialize base and height
+        public function __construct($width, $height2) {
+            $this->width = $width;
+            $this->height2 = $height2;
+        }
+
+        // Implement the calculateArea method for Triangle
+        public function calculateArea() {
+            return $this->width * $this->height2;
+        }
+    }
+
+    // Create a Triangle object with base 10 and height1 5
+    $triangle = new Triangle(10, 5);
+    echo "Area of Triangle: " . $triangle->calculateArea() . "<br>"; // Output: 25
+
+    // Create a Rectangle object with width 4 and height2 6
+    $rectangle = new Rectangle(4, 6);
+    echo "Area of Rectangle: " . $rectangle->calculateArea() . "<br>"; // Output: 24
+?>

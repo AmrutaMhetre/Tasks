@@ -1,0 +1,207 @@
+7_1.php
+<?php
+// MySQL connection parameters
+$servername = "localhost";
+$username = "root";  // use your username
+$password = "";  // use your password
+$dbname = "myDatabase";  // database name
+
+// Create connection to MySQL
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// 1. Create Database
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully<br>";
+} else {
+    echo "Error creating database: " . $conn->error;
+}
+
+// Select the created database
+$conn->select_db($dbname);
+
+// 2. Create Table
+$sql = "CREATE TABLE IF NOT EXISTS myTable (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(30) NOT NULL,
+    lastname VARCHAR(30) NOT NULL,
+    email VARCHAR(50)
+)";
+if ($conn->query($sql) === TRUE) {
+    echo "Table created successfully<br>";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+// 3. Insert values into the table
+$sql = "INSERT INTO myTable (firstname, lastname, email)
+VALUES ('Amruta', 'Mhetre', 'amruta@gmail.com')";
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully<br>";
+} else {
+    echo "Error inserting record: " . $conn->error;
+}
+
+$sql = "INSERT INTO myTable (firstname, lastname, email)
+VALUES ('Sneha', 'Mane', 'sneha@gmail.com')";
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully<br>";
+} else {
+    echo "Error inserting record: " . $conn->error;
+}
+// 4. Select values
+$sql = "SELECT id, firstname, lastname FROM myTable";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "Records in myTable:<br>";
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    }
+} else {
+    echo "0 results<br>";
+}
+
+// 4. Select with WHERE clause
+$sql = "SELECT id, firstname, lastname FROM myTable WHERE firstname='John'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "Records where firstname='John':<br>";
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    }
+} else {
+    echo "0 results<br>";
+}
+
+// 5. Update values
+$sql = "UPDATE myTable SET lastname='Smith' WHERE firstname='John'";
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully<br>";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+
+// 6. Delete a particular record
+$sql = "DELETE FROM myTable WHERE firstname='John'";
+if ($conn->query($sql) === TRUE) {
+    echo "Record deleted successfully<br>";
+} else {
+    echo "Error deleting record: " . $conn->error;
+}
+
+// 7. Drop the table
+$sql = "DROP TABLE myTable";
+if ($conn->query($sql) === TRUE) {
+    echo "Table dropped successfully<br>";
+} else {
+    echo "Error dropping table: " . $conn->error;
+}
+
+// 8. Drop the database
+$sql = "DROP DATABASE $dbname";
+if ($conn->query($sql) === TRUE) {
+    echo "Database dropped successfully<br>";
+} else {
+    echo "Error dropping database: " . $conn->error;
+}
+
+// Close the connection
+$conn->close();
+?>
+
+
+
+
+
+
+
+7_2.php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert and Display Data</title>
+</head>
+<body>
+    <h1>Insert Data into Database</h1>
+    <form method="POST" action="">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required><br><br>
+
+        <input type="submit" name="insert" value="INSERT">
+        <input type="submit" name="show" value="SHOW">
+    </form>
+
+    <?php
+    // Database connection details
+    $servername = "localhost";
+    $username = "root"; // change if needed
+    $password = "";     // change if needed
+    $dbname = "test_db";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Insert Operation
+    if (isset($_POST['insert'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+
+        $sql = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully!";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+
+    // Select Operation (Display data in HTML table)
+    if (isset($_POST['show'])) {
+        $sql = "SELECT * FROM users";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            echo "<h2>Users List</h2>";
+            echo "<table border='1'>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>";
+            // Output data of each row
+            while($row = $result->fetch_assoc()) {
+                echo "<tr>
+                        <td>" . $row["id"]. "</td>
+                        <td>" . $row["name"]. "</td>
+                        <td>" . $row["email"]. "</td>
+                      </tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
+    }
+
+    // Close connection
+    $conn->close();
+    ?>
+</body>
+</html>

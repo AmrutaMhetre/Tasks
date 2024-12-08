@@ -1,0 +1,104 @@
+<!-- Create a registration form with all component (Textbox, radio button, checkbox, list..) . Perform the validation of all fields. After Submit Display information of registration in PHP on other page
+(Make use of POST method, Use Superglobal variable $_POST() 
+Fields: Roll, Name, Class (List) Email ID, Phone Number, Gender (radio), Technology Known (Checkbox) etc…
+(Include all kind of components in form)
+ -->
+<html>
+    <body>
+        <form action="./5_1.php" method="POST">
+            <h1>Registration Form</h1>
+            Name:
+            <input type="text" name="name" required><br><br>
+
+            Roll No.:
+            <input type="number" name="prn" required><br><br>
+
+            Email:
+            <input type="email" name="email" required><br><br>
+
+            Password:
+            <input type="password" name="passwd" required><br><br>
+
+            Gender:
+            <input type="radio" name="gender" value="Male">Male
+            <input type="radio" name="gender" value="Female">Female<br><br>
+
+            Phone No. :
+            <input type="phone" name="mobile" required><br><br>
+
+            Class:
+            <select name="class" id="">
+                <option value="fy">FY</option>
+                <option value="sy">SY</option>
+                <option value="ty">TY</option>
+                <option value="final">Final Year</option>
+            </select><br><br>
+
+            Courses:
+            <input type="checkbox" name="course[]" value="c">C
+            <input type="checkbox" name="course[]" value="c++">C++
+            <input type="checkbox" name="course[]" value="java">Java
+            <input type="checkbox" name="course[]" value="python">Python
+            <input type="checkbox" name="course[]" value="web">Web Development<br><br>
+
+            <input type="submit" name="submit" value="Submit">
+        </form>
+    </body>
+</html>
+
+
+
+<!-- php code -->
+<?php
+    if(isset($_POST["submit"])){
+        //Name
+        $nm = $_POST["name"];
+        echo"Name: ".$nm;
+        echo"<br><br>";
+
+        //Roll No.
+        $roll = $_POST["prn"];
+        echo"Roll No.: ".$roll;
+        echo"<br><br>";
+
+        //Email
+        $mail = $_POST["email"];
+        if(filter_var($mail,FILTER_VALIDATE_EMAIL)){
+            echo"Email: ".$mail;
+        }
+        echo"<br><br>";
+
+        //Password
+        $pass = $_POST["passwd"];
+        echo"Password: ".$pass;
+        echo"<br><br>";
+
+        //Gender
+        // $gen = $_POST["gender"];
+        if(isset($_POST["gender"])){
+            echo"Gender:".$_POST["gender"]."<br>";
+        }
+
+        //Phone No.
+        $ph = $_POST["mobile"];
+        if(preg_match("/^[0-9]{10}$/",$ph)){
+            echo"Phone Number:" .$ph."<br>";
+        }
+
+        //Class
+        $selected_val = $_POST['class'];  // Storing Selected Value In Variable
+        echo "<br> You are in class :" .$selected_val;  // Displaying Selected Value
+
+        //Courses
+        if(isset($_POST['course'])){
+            $a = $_POST['course'];
+            echo "</br> You choose the following Technologies(s): <br>";
+            foreach ($a as $course){
+                echo $course."<br/>";
+            }    
+        }
+        else{
+            echo "<br> You did not choosen any Technology.";
+        }
+    }
+?>

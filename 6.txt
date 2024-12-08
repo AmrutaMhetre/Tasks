@@ -1,0 +1,198 @@
+<!-- 1.	Implement the PHP code to
+-	Set the cookies
+-	Retrieve the information of cookies 
+-	Update the cookies
+-	Delete the cookies  -->
+
+<?php
+//Set the cookies
+setcookie("user","123",time()+3600);
+echo "Cookie 'user' is set"; 
+echo "<br>";
+
+//Retrieve the information of cookies 
+if(isset($_COOKIE["user"]))
+{
+    echo "User cookie values is " .$_COOKIE["user"];
+    echo "<br>";
+}
+else{
+    echo "Cookie 'user' is not set!";
+    echo "<br>";
+}
+
+//Update the cookies
+setcookie("user","789",time()+3600);
+echo "Cookie user is updated to 789";
+echo "<br>";
+
+//Delete the cookies 
+setcookie("user", "", time()-3600);
+echo "Cookie user is deleted";
+?>
+
+
+<!-- 2.	Implement the PHP code to Manage the session
+-	Starting session
+-	Creating session
+-	Accessing session values
+-	Destroying session -->
+
+<?php
+//Starting session
+session_start();
+echo "session started!";
+echo "<br>";
+
+//Creating session
+$_SESSION["Username"]="Amruta";
+$_SESSION["Email"]="amrutamhetre5221@gmail.com";
+echo " Session variables are set";
+echo "<br>";
+
+//Accessing session values
+if(isset($_SESSION["Username"]) && isset($_SESSION["Email"]))
+{
+ echo "Username: " .$_SESSION["Username"] . "<br>";
+ echo "Email: " .$_SESSION["Email"] . "<br>";
+ }
+else{
+  echo "Session variable is not set ";
+}
+
+//Destroying session
+session_destroy();
+echo "Session is destroyed";
+?>
+
+
+
+<!-- 3.	Implement the PHP code to find how many times the page is visited  -->
+
+<?php
+// Check if the "visit_count" cookie is set
+if (isset($_COOKIE['visit_count'])) {
+    // If the cookie is set, increment the visit count
+    $visit_count = $_COOKIE['visit_count'] + 1;
+} else {
+    // If the cookie is not set, initialize the visit count to 1
+    $visit_count = 1;
+}
+
+// Set or update the "visit_count" cookie with the new value
+setcookie('visit_count', $visit_count, time() + 3600); 
+
+// Display the visit count to the user
+echo "<h2>You have visited this page " . $visit_count . " times. </h2>";
+?>
+
+
+
+
+<!-- 4.	Implement the PHP code to demonstrate the expiry of session by clicking logout or back button) -->
+
+<!-- login -->
+<?php
+session_start(); // Start the session
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Set session variables
+    $_SESSION['username'] = $_POST['username'];
+    header("Location: welcome.php"); // Redirect to welcome page
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <form method="post" action="">
+        <label for="username"><h2>Username:</h2></label>
+        <input type="text" id="username" name="username" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
+
+
+
+<!-- welcome.php -->
+
+<?php
+session_start(); // Continue the session
+
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: welcome.php"); // Redirect to login page if not logged in
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
+    <p><a href="logout.php">Logout</a></p>
+</body>
+</html>
+
+
+
+<!-- logout.php -->
+
+<?php
+session_start(); // Continue the session
+
+// Unset all session variables
+session_unset();
+
+// Destroy the session
+session_destroy();
+
+// Redirect to the login page
+header("Location:Q4.php");
+exit();
+?>
+
+
+
+<!-- 5.	Implement the PHP code to demonstrate the use of $_SERVER to find the details of name of server, name of the script, IP address of server, name of the request method, name of the protocol -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$_SERVER Superglobal Demonstration</title>
+</head>
+<body>
+    <h1>$_SERVER Superglobal Details</h1>
+
+    <?php
+    // Getting the name of the server
+    echo "<p><strong>Server Name:</strong> " . $_SERVER['SERVER_NAME'] . "</p>";
+
+    // Getting the name of the script
+    echo "<p><strong>Script Name:</strong> " . $_SERVER['SCRIPT_NAME'] . "</p>";
+
+    // Getting the IP address of the server
+    echo "<p><strong>Server IP Address:</strong> " . $_SERVER['SERVER_ADDR'] . "</p>";
+
+    // Getting the request method used
+    echo "<p><strong>Request Method:</strong> " . $_SERVER['REQUEST_METHOD'] . "</p>";
+
+    // Getting the name of the protocol used
+    echo "<p><strong>Server Protocol:</strong> " . $_SERVER['SERVER_PROTOCOL'] . "</p>";
+    ?>
+
+</body>
+</html>
+
