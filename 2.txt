@@ -1,0 +1,548 @@
+<!-- Problem Stmt1 : Input three numbers and find maximum between them. -->
+ <html>
+    <body>
+    <form action="" method="POST">
+            <h2>Enter three numbers:</h2>
+            <input type="number" name="n1"><br><br>
+            <input type="number" name="n2"><br><br>
+            <input type="number" name="n3"><br><br>
+            <input type="submit" name="submit">
+        </form>
+    </body>
+ </html>
+<?php
+    if(isset($_POST["submit"])){
+        $a = $_POST['n1'];
+        $b = $_POST['n2'];
+        $c = $_POST['n3'];
+
+        if($a>$b && $a>$c) {
+            echo "The largest number is $a";
+        } 
+        else if($a>$b && $a<$c) {
+            echo "The largest number is $c";
+        }
+        else{
+            echo "The largest number is $b";
+        }
+    }
+    
+?>
+
+<!-- Problem Stmt2 : Write a program to print types of triangles taking lengths of 3 sides from user using nested if else statement. -->
+<html>
+    <body>
+        <form action="" method="POST">
+            <h2>Enter the lengths of a triangle :</h2> 
+            <input type="number" name="n1"><br><br>
+            <input type="number" name="n2"><br><br>
+            <input type="number" name="n3"><br><br>
+            <input type="submit" name="submit">
+        </form>
+
+        <?php
+            if(isset($_POST["submit"]))
+            {
+                $a = $_POST["n1"];
+                $b = $_POST["n2"];
+                $c = $_POST["n3"];
+                if($a==$b && $b==$c)
+                {
+                    echo"The type of traingle is Equilateral";
+                }
+                else if($a==$b or $a==$c or $b==$c)
+                {
+                    echo"The type of traingle is Isoscales";
+                }
+                else
+                {
+                    echo"The type of traingle is Scalene";
+                }
+            }
+        ?>
+    </body>
+</html>
+
+
+<!-- Problem Stmt3 : Input marks of five subjects from user, calculate percentage and print grade -->
+
+<html>
+    <body>
+        <form action="" method="POST">
+            <h2>Enter the marks of 5 subjects :</h2>
+            <input type="number" name="s1" placeholder="Physics"><br><br>
+            <input type="number" name="s2" placeholder="Chemistry"><br><br>
+            <input type="number" name="s3" placeholder="Maths"><br><br>
+            <input type="number" name="s4" placeholder="Biology"><br><br>
+            <input type="number" name="s5" placeholder="English"><br><br>
+            <input type="submit" name="submit">
+        </form>
+
+        <?php
+            if(isset($_POST["submit"])){
+                $a = (int)$_POST['s1'];
+                $b = (int)$_POST['s2'];
+                $c = (int)$_POST['s3'];
+                $d = (int)$_POST['s4'];
+                $e = (int)$_POST['s5'];
+                
+                $sum = $a + $b + $c + $d + $e;
+                $per = $sum/5;
+                if($per >= 90){
+                    echo "The Percentage of student is ".$per." and the grade is A";
+                }
+                else if($per>80 && $per< 89){
+                    echo "The Percentage of student is".$per."and the grade is B";
+                }
+                else if($per>70 && $per< 79){
+                    echo "The Percentage of student is".$per."and the grade is C";
+                }
+                else if($per>60 && $per< 69){
+                    echo "The Percentage of student is".$per."and the grade is D";
+                }
+                else if($per>50 && $per< 59){
+                    echo "The Percentage of student is".$per."and the grade is E";
+                }
+                else if($per>=40 && $per< 49){
+                    echo "The Percentage of student is".$per."and the grade is Pass";
+                }
+                else if($per<40){
+                    echo "The student is Fail";
+                }
+            }
+        ?>
+    </body>
+</html>
+
+
+<!-- Problem Stmt4 : Write a C program to check whether a character is upper case or lower case
+(Check ASCII value range :65-90 Capital Letter and 97-122 lower case letter)
+ -->
+<html>
+    <body>
+        <form action="" method="POST">
+            <input type="text" name="character" required>
+            <input type="submit" name="submit">
+        </form>
+
+        <?php
+            if(isset($_POST["submit"])){
+                $char = $_POST["character"];
+
+                if (strlen($char) == 1) {
+                    $ascii = ord($char);
+                    
+                    if ($ascii >= 65 && $ascii <= 90) {
+                        echo "The ascii value of character is $ascii and The character '$char' is an uppercase letter.";
+                    } 
+                    elseif ($ascii >= 97 && $ascii <= 122) {
+                        echo "The ascii value of character is $ascii The character '$char' is a lowercase letter.";
+                    } 
+                    else {
+                        echo "The character '$char' is neither an uppercase nor a lowercase letter.";
+                    }
+                } else {
+                    echo "Please enter a single character.";
+                }
+            }
+        ?>
+    </body>
+</html>
+ 
+
+<!-- Problem Stmt5 : Input two numbers from user and implement arithmetic calculator using switch case -->
+<html>
+    <body>
+        <form action="2_5.php" method="POST">
+            <h2>Enter the numbers :</h2>
+            <input type="number" name="n1"><br><br>
+            <input type="number" name="n2"><br><br>
+
+            Choose an operation : <br><br>
+            <input type="radio" id="addition" name="operation" value="1" required> Addition <br>
+            <input type="radio" id="subtraction" name="operation" value="2"> Subtraction<br>
+            <input type="radio" id="multiplication" name="operation" value="3"> Multiplication<br>
+            <input type="radio" id="division" name="operation" value="4"> Division<br>
+            <input type="radio" id="modulus" name="operation" value="5"> Modulus<br>
+
+            <input type="submit" name="submit" value="Calculate">
+        </form>
+    </body>
+</html>
+<!-- Input two numbers from user and implement arithmetic calculator using switch case -->
+<?php
+    if(isset($_POST["submit"])){
+        $a = $_POST["n1"];
+        $b = $_POST["n2"];
+        $ch = $_POST["operation"];
+        switch($ch){
+            case "1": 
+                $result = $a + $b;
+                echo "The addition of $a and $b is $result";
+                break;
+            case "2": 
+                $result = $a - $b;
+                echo "The subtraction of $a and $b is $result";
+                break;
+            case "3":
+                $result = $a * $b;
+                echo "The multiplication of $a and $b is $result";
+                break;
+            case "4":
+                if($b!=0){
+                    $result = $a / $b;
+                    echo "The division of $a and $b is $result";
+                }else{
+                    echo "Division by zero is not allowed.";
+                }
+                break; 
+            case "5": 
+                if($b!=0){
+                    $result = $a % $b;
+                    echo "The modulus of $a and $b is $result";
+                }else{
+                    echo "Modulus by zero is not allowed.";
+                }
+                break;
+            default:
+                echo "Wrong Choice";
+                break;
+        }
+
+    }
+    else {
+        echo "No operation selected.";
+    }
+?>
+
+
+<!-- Problem Stmt6 :  Find the Sum of Digits -->
+
+<html>
+    <head>
+        <title>Sum of Digits</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            <h2>Enter a number :</h2>
+            <input type="number" name="n1" required><br><br>
+            <input type="submit" name="submit" value="Sum of Digits">
+        </form>
+
+        <?php
+            if (isset($_POST["submit"])) {
+                $num = $_POST["n1"];
+                $original_num = $num; 
+                $sum = 0;
+                
+                while ($num > 0) {
+                    $rem = $num % 10;
+                    $sum = $sum + $rem;
+                    $num = intval($num / 10);
+                }
+                
+                echo "Sum of digits of $original_num is $sum";
+            }
+        ?>
+    </body>
+</html>
+
+
+<!-- Problem Stmt7 : Write a PHP program to check prime number. -->
+
+<html>
+    <head>
+        <title>Check prime number</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            <h2>Enter a number :</h2>
+            <input type="number" name="n1" required><br><br>
+            <input type="submit" name="submit" value="Check Prime">
+        </form>
+
+        <?php
+            if (isset($_POST["submit"])) {
+                $num = $_POST["n1"];
+                $isPrime = true;
+
+                if ($num <= 1) {
+                    $isPrime = false;
+                } 
+                elseif ($num == 2) {
+                    $isPrime = true;
+                } 
+                elseif ($num % 2 == 0) {
+                    $isPrime = false;
+                } 
+                else {
+                    for ($i = 3; $i <= sqrt($num); $i += 2) {
+                        if ($num % $i == 0) {
+                            $isPrime = false;
+                            break;
+                        }
+                    }
+                }
+
+                if ($isPrime) {
+                    echo "<h3>$num is a prime number.</h3>";
+                } else {
+                    echo "<h3>$num is not a prime number.</h3>";
+                }
+            }
+        ?>
+    </body>
+
+
+<!-- Problem Stmt8 : Print Table of entered number -->
+
+<html>
+    <head>
+        <title>Print Table</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            <h2>Enter a number :</h2>
+            <input type="number" name="n1" required><br><br>
+            <input type="submit" name="submit" value="Print Table">
+        </form>
+
+        <?php
+            if (isset($_POST["submit"])) {
+                $num = $_POST["n1"];
+                echo"The multiplication table of $num :";
+                echo"<table border='1'>";
+                for($i=1;$i<=10;$i++){
+                    $result = $num*$i;
+                    echo" <tr><td> $num * $i = $result </td></tr>";
+                }
+                echo"</table>";
+            }
+        ?>
+    </body>
+
+
+<!-- Problem Stmt9 : Write a PHP program to check armstrong number. -->
+<html>
+    <head>
+        <title>Check Armstrong Number</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            <h2>Enter a number :</h2>
+            <input type="number" name="n1" required><br><br>
+            <input type="submit" name="submit" value="Check Armstrongs">
+        </form>
+
+        <?php
+           if (isset($_POST["submit"])) {
+            $num = $_POST["n1"];
+            $original_num = $num;
+            $sum = 0;
+            $numDigits = strlen((string)$num);
+    
+            while ($num != 0) {
+                $rem = $num % 10;
+                $sum += pow($rem, $numDigits);
+                $num = intval($num / 10);
+            }
+    
+            if ($sum == $original_num) {
+                echo "<h3>$original_num is an Armstrong number.</h3>";
+            } else {
+                echo "<h3>$original_num is not an Armstrong number.</h3>";
+            }
+        }
+        ?>
+    </body>
+
+
+<!-- Problem Stmt10 : Write a PHP program to reverse given number. -->
+
+<html>
+    <head>
+        <title>Reverse Number</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            <h2>Enter a number :</h2>
+            <input type="number" name="n1" required><br><br>
+            <input type="submit" name="submit" value="Reverse Number">
+        </form>
+
+        <?php
+            if (isset($_POST["submit"])) {
+                $num = $_POST["n1"];
+                $original_num = $num; 
+                $reverse = 0;
+
+                // Using while loop to reverse the number
+                while ($num > 0) {
+                    $rem = $num % 10;
+                    $reverse = ($reverse * 10) + $rem;
+                    $num = intval($num / 10);
+                }
+
+                echo "Reversed number of $original_num is $reverse";
+            }
+        ?>
+    </body>
+</html>
+
+
+<!-- Problem Stmt11: Write a PHP program to check palindrome number. -->
+
+<html>
+    <head>
+        <title>Palindrome</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            <h2>Enter a number :</h2>
+            <input type="number" name="n1" required><br><br>
+            <input type="submit" name="submit" value="Check Palindrome">
+        </form>
+
+        <?php
+            if (isset($_POST["submit"])) {
+                $num = $_POST["n1"];
+                $original_num = $num; 
+                $reverse = 0;
+
+                // Using while loop to reverse the number
+                while ($num > 0) {
+                    $rem = $num % 10;
+                    $reverse = ($reverse * 10) + $rem;
+                    $num = intval($num / 10);
+                }
+
+                if ($original_num == $reverse) {
+                    echo "$original_num is a palindrome number.";
+                } else {
+                    echo "$original_num is not a palindrome number.";
+                }
+            }
+        ?>
+    </body>
+</html>
+
+
+<!-- Problem Stmt12 : Write a PHP program to print fibonacci series -->
+
+<html>
+    <head>
+        <title>Print Fibonacci Series</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            <h2>Enter the number of terms :</h2>
+            <input type="number" name="n1" required><br><br>
+            <input type="submit" name="submit" value="Fibonacci Series">
+        </form>
+
+        <?php
+            if (isset($_POST["submit"])) {
+                $num = $_POST["n1"];
+                $a = 0;
+                $b = 1;
+
+                echo "Fibonacci Series: ";
+
+                for ($i = 0; $i < $num; $i++) {
+                    echo $a . " ";
+                    $next_term = $a + $b;
+                    $a = $b;
+                    $b = $next_term;
+                }
+            }
+        ?>
+    </body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Alphabet Triangle</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            Enter the number of rows :
+            <input type="number" name="n1" required><br><br>
+            <input type="submit" name="submit" value="Print Alphabet Triangle">
+        </form>
+
+        <?php
+            // if (isset($_POST["submit"])) {
+            //     $num_rows = $_POST["n1"];
+
+            //     echo "<pre>";
+            //     for ($i = 0; $i < $num_rows; $i++) {
+            //         // Print leading spaces
+            //         for ($j = $i; $j < $num_rows - 1; $j++) {
+            //             echo " ";
+            //         }
+            //         // Print increasing part of the alphabet
+            //         for ($j = 0; $j <= $i; $j++) {
+            //             echo chr(65 + $j);
+            //         }
+            //         // Print decreasing part of the alphabet
+            //         for ($j = $i - 1; $j >= 0; $j--) {
+            //             echo chr(65 + $j);
+            //         }
+            //         echo "\n";
+            //     }
+            // }
+
+
+            if(isset($_POST["submit"])){
+                $num_rows = $_POST["n1"];
+
+                echo "<pre>";
+                for($i=0; $i<$num_rows;$i++){
+                    for($j=$i;$j<$num_rows;$j++){
+                        echo " ";
+                    }
+                    for($j=0;$j<=$i;$j++){
+                        echo chr(65+$j);
+                    }
+                    for($j=$i-1;$j>=0;$j--){
+                        echo chr(65+$j);
+                    }
+                    echo"\n";
+                }
+            }
+        ?>
+    </body>
+</html>
+
+
+<!-- Problem Stmt14: Write a PHP programs to print star triangle. -->
+<?php
+    $num = 5;
+    
+    // upside pyramid
+    for ($i = 1; $i <= $num; $i++) {
+        // printing spaces
+        for ($j = $num; $j > $i; $j--) {
+            echo "&nbsp;&nbsp;";
+        }
+        // printing star
+        for ($k = 0; $k < $i * 2 - 1; $k++) {
+            echo "*";
+        }
+        echo "<br>";
+    }
+    // downside pyramid
+    for ($i = 1; $i <= $num - 1; $i++) {
+        // printing spaces
+        for ($j = 0; $j < $i; $j++) {
+            echo "&nbsp;&nbsp;";
+        }
+        // printing star
+        for ($k = ($num - $i) * 2 - 1; $k > 0; $k--) {
+            echo "*";
+        }
+        echo "<br>";
+    }
+?>
