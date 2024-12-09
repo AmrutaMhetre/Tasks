@@ -102,3 +102,32 @@ Fields: Roll, Name, Class (List) Email ID, Phone Number, Gender (radio), Technol
         }
     }
 ?>
+
+
+
+//preg_match email
+
+<html>
+<body>
+<form method="POST">
+Name: <input type="text" name="name"><br><br>
+E-mail: <input type="text" name="email"><br><br>
+<input type="submit" name="submit">
+</form>
+<?php
+// Email Validation code in PHP
+if(isset($_POST['submit']))
+{
+$email=$_POST["email"];
+if(preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $email)) 
+{
+    echo "valid email address";
+}
+else
+{
+    echo "Invalid email address";
+}
+}
+ ?>
+</body>
+</html>
