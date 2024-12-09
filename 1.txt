@@ -1,0 +1,268 @@
+<!-- Problem Stmt1 : Write a php program to Print Your Biodata  -->
+<?php
+    echo"<h1>BIODATA</h1>";
+    $name = "Amruta Raghunath Mhetre";
+    $mothers_name = "Shital";
+    $age=20;
+    $gender= "Female";
+    $address = "Vita";
+    $mob_no = "8793631761";
+    $email = "2110019@ritindia.edu";
+    $education = "Final Year B.Tech (CSIT)";
+
+    echo"Name :".$name."<br>";
+    echo"Mother's Name :".$mothers_name."<br>";
+    echo"Age :".$age."<br>";
+    echo"Gender :".$gender."<br>";
+    echo"Address :".$address."<br>";
+    echo"Mobile No. :".$mob_no."<br>";
+    echo"Email ID :".$email."<br>";
+    echo"Education :".$education."<br>";
+?>
+
+
+<!-- Problem Stmt2 : Write a php program to take a number input from user and print it.. -->
+<?php
+    // $num = readline("Enter the number :");
+    // if($num!==""){
+    //     echo "The typed number is $num";
+    // }
+    // else{
+    //     echo "Please enter the number";
+    // }
+?> 
+
+<?php
+    // $name = readline("Enter the name :");
+    // if($name!==""){
+    //     echo "The typed name is $name";
+    // }
+    // else{
+    //     echo "Please enter the name";
+    // }
+?>
+
+
+<html>  
+    <body>
+        <form action="" method="POST">
+            Enter the number :
+            <input type="text" name="n1">
+            <input type="submit" name="submit">
+        </form>
+
+    <?php 
+        if(isset($_POST["submit"])){
+            $a = $_POST["n1"];
+            echo"The typed number is ".$a;
+        }
+    ?>
+
+    </body>
+</html>
+
+
+
+
+<!-- Write a php program to  perform and display addition, subtraction, division, multiplication of two numbers. -->
+
+<?php
+    $a = 20;
+    $b = 10;
+    echo"<h2>The sum of " .$a. " and " .$b. " is " .$a+$b. "</h2>";
+    echo"<h2>The subtraction of " .$a. " and " .$b. " is " .$a-$b. "</h2>";
+    echo"<h2>The multiplication of " .$a. " and " .$b. " is " .$a*$b. "</h2>";
+    echo"<h2>The division of " .$a. " and " .$b. " is " .$a/$b. "</h2>";
+    echo $a/$b;
+?>
+
+
+
+
+<!-- Find maximum number amongst three number using ternary operator -->
+
+/* <?php
+    $n1 = 20;
+    $n2 = 10;
+    $n3 = 30;
+
+    $largest = ($n1>$n2) ? ($n1>$n3 ? $n1:$n3) : ($n2>$n3 ? $n2 :$n3);
+
+    echo "<h2>The maximum number is : " .$largest."</h2>";
+?>*/
+
+
+<html>
+    <body>
+        <form action="" method="POST">
+            Enter three numbers:
+            <input type="number" name="n1">
+            <input type="number" name="n2">
+            <input type="number" name="n3">
+            <input type="submit" name="submit">
+        </form>
+
+        <?php
+            if(isset($_POST["submit"])){
+                $a = $_POST["n1"];
+                $b = $_POST["n2"];
+                $c = $_POST["n3"];
+
+                $largest = ($a > $b)?($a > $c ? $a : $c) : ($b > $c ? $b : $c);
+                
+                echo "The largest number is ".$largest;
+            }
+        ?>
+    </body>
+</html>
+
+
+
+
+
+
+
+<!-- 
+Problem Stmt5 : Demonstrate the All types of assignment operators (= and all free Hand Assignment)
+Basic Assignment (=)
+Addition Assignment (+=)
+Subtraction Assignment (-=)
+Multiplication Assignment (*=)
+Division Assignment (/=)
+Modulus Assignment (%=) -->
+
+<?php
+    echo"<h2>Assignment Operators</h2>";
+    $x=10;
+    echo"The Basic assignment x = " .$x ."<br>";
+
+    $x +=5;
+    echo"The Addition assignment x +=5; x = " .$x ."<br>";
+
+    $x -=2;
+    echo"The Subtraction assignment x -=2; x = " .$x ."<br>";
+
+    $x *=5;
+    echo"The Multiplication assignment x *= 4; x = " .$x ."<br>";
+
+    $x /=13;
+    echo"The Division assignment x /=5; x = " .$x ."<br>";
+
+    $x %=3;
+    echo"The Modulus assignment x %=5; x = " .$x ."<br>";
+
+?>
+
+
+
+
+
+<!-- Problem Stmt6 : Write PHP code to swap two numbers -->
+
+<?php
+    $x=10;
+    $y= 20;
+    echo"The numbers are $x and $y <br>";
+
+    $temp = $x;
+    $x = $y;
+    $y = $temp;
+    echo"The reversed numbers are $x and $y";
+?>
+
+
+
+
+
+
+<!-- Problem Stmt7 : Perform the bitwise operations on two numbers. 
+( &, |, ^, ~, <<, >>) -->
+
+<?php
+    $x = 4;  // 0100
+    $y = 2;  // 0010
+
+    $and = $x & $y;
+    echo "Bitwise AND :".$and ."<br>";   //0000
+
+    $or = $x | $y;
+    echo "Bitwise OR :".$or ."<br>";     //0110
+
+    $xor = $x ^ $y;
+    echo "Bitwise XOR :".$xor ."<br>";   //0110
+
+    $not = ~$x;
+    echo "Bitwise NOT :".$not ."<br>";   //1011
+
+    $leftShift = $x << 1;
+    echo "Bitwise Left Shift :".$leftShift ."<br>";      //1000
+  
+    $rightShift = $x >> 1; 
+    echo "Bitwise Right Shift :".$rightShift ."<br>";    //0010
+?>
+
+
+
+
+
+
+<!-- Problem Stmt8 : Demonstrate the use of Incrementing/Decrementing Operators -->
+
+<?php
+    $x=10;
+    $x++;
+    echo"<h3>The value of x after increment operator : $x </h3><br>";
+
+    $y= 20;
+    $y--;
+    echo"<h3>The value of y after decrement operator : $y </h3>";
+?> 
+
+
+
+
+
+<!-- Problem Stmt9 : Write a  PHP program to merge/Concatenate two string -->
+
+<?php
+    $string1 = "Hello";
+    $string2 = " Everyone!!";
+    $string1 .= $string2;
+    echo "<h2>The string after concatenation is $string1 </h2>";
+?>
+
+
+
+
+
+<!-- Problem Stmt10 : Demonstrate use of instanceof  Operator  -->
+
+<?php
+    class student{
+        public function Hello(){
+            echo"Hello student";
+        }
+    }
+    class student1 extends student{
+
+    } 
+
+    class student2 {
+        
+    } 
+
+
+
+    $s1 = new student();
+    $s2 = new student1();
+    $s3 = new student2();
+
+    if($s2 instanceof student){
+        //here escape character is used to prevent interpretation as PHP variable
+        echo "\$s2 is an instance of student class";
+    }
+    else{
+        echo "\$s2 is not an instance of student class";
+    }
+
+?>
